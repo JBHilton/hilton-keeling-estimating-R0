@@ -16,7 +16,7 @@ opts.ExtraColumnsRule = "ignore";
 opts.EmptyLineRule = "read";
  
 % Import the data
-tbl = readtable("data/no_sus_scaling.csv", opts);
+tbl = readtable("master_outputs/no_sus_scaling.csv", opts);
  
 % Convert to output type
 Country = tbl.Country;
@@ -26,7 +26,7 @@ ScalingFactor = tbl.ScalingFactor;
 clear opts tbl
  
 %%
-M=shaperead("data/ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes_newnames");
+M=shaperead("inputs/ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes_newnames");
  
 %%
 success_count=0;
