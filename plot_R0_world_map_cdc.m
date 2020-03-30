@@ -74,7 +74,7 @@ for i=1:length(SF)
 end
  
 %%
-figure;
+fig = figure('units','normalized','outerposition',[0 0 1 1]);
 faceColors = makesymbolspec("Polygon",{"INDEX", [1 length(M)], "FaceColor",COLOUR,"LineStyle","-"});
 mapshow(M,"SymbolSpec",faceColors);
 axis([-180 180 -60 90]);

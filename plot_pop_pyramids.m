@@ -1,8 +1,8 @@
 % Plots population pyramids for China, Italy, Niger
 
-niger_pyr = readtable("data/Niger-2019.csv");
-china_pyr = readtable("data/China-2019.csv");
-italy_pyr = readtable("data/Italy-2019.csv");
+niger_pyr = readtable("inputs/Niger-2019.csv");
+china_pyr = readtable("inputs/China-2019.csv");
+italy_pyr = readtable("inputs/Italy-2019.csv");
 
 niger_pop = sum(niger_pyr.M)+sum(niger_pyr.F);
 niger_male = niger_pyr.M/sum(niger_pop);
@@ -41,7 +41,6 @@ xticklabels({'10%','5%','0','5%','10%'})
 yticks([1:1:21])
 yticklabels(china_pyr.Age)
 xlabel('Proportion of population (males | females)')
-ylabel('Age')
 title('China')
 pbaspect([4 5 1])
 set(gca,'TickLength',[0 0],'FontSize',12)
@@ -55,7 +54,6 @@ xticklabels({'10%','5%','0','5%','10%'})
 yticks([1:1:21])
 yticklabels(italy_pyr.Age)
 xlabel('Proportion of population (males | females)')
-ylabel('Age')
 title('Italy')
 pbaspect([4 5 1])
 set(gca,'TickLength',[0 0],'FontSize',12)
