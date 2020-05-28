@@ -51,34 +51,32 @@ end
  
 Q(4)=149; Q(76)=110;
  
+Cmap = [165,0,38; 215,48,39; 244,109,67; 253,174,97; 254,224,144; 255,255,191; 224,243,248; 171,217,233; 116,173,209; 69,117,180; 49,54,149];
+Cmap = Cmap(end:-1:1,:)/max(max(Cmap));
+Cmap = [Cmap(1,:)-(Cmap(2,:)-Cmap(1,:)); Cmap];
+Cmap(1,2) = 0;
+
+R0 = 2.4;
+R0_range = 1:0.25:3.75;
 for i=1:length(M)
     if isfinite(Q(i))
-        SF=1+log(ScalingFactor(Q(i)))/log(2); SF(SF<0)=0; SF(SF>2)=2;
-        if SF<1
-            COLOUR(i,:)=[0 1 0]+SF^2*([0 0 1]-[0 1 0]);
+        if R0*ScalingFactor(Q(i))<min(R0_range)
+        	COLOUR(i,:) = Cmap(1,:);
         else
-            COLOUR(i,:)=[0 0 1] + (SF-1)^2*([1 0 0]-[0 0 1]);
+            colour_loc(Q(i)) = find(R0_range<=R0*ScalingFactor(Q(i)),1,'last');
+            COLOUR(i,:) = Cmap(colour_loc(Q(i)),:);
         end
     else
         COLOUR(i,:)=[0.7 0.7 0.7];
     end
 end
- 
-SF=[0:0.02:2];
-for i=1:length(SF)
-    if SF(i)<1
-        Cmap(i,:)=[0 1 0]+SF(i)^2*([0 0 1]-[0 1 0]);
-    else
-        Cmap(i,:)=[0 0 1] + (SF(i)-1)^2*([1 0 0]-[0 0 1]);
-    end
-end
- 
+
 %%
 fig = figure('units','normalized','outerposition',[0 0 1 1]);
 faceColors = makesymbolspec("Polygon",{"INDEX", [1 length(M)], "FaceColor",COLOUR,"LineStyle","-"});
 mapshow(M,"SymbolSpec",faceColors);
 axis([-180 180 -60 90]);
-colormap(Cmap); caxis([1+log(25/48)/log(2) 1+log(50/24)/log(2)]); h=colorbar; set(h,"YTick",1+log((25/24)*([0.5 0.6 0.8 1 1.2 1.6 2]))/log(2),"XTickLabel",{"1.25","1.5","2","2.5","3","4","5+"});
+colormap(Cmap); caxis([1 4]); h=colorbar; set(h,"YTick",1:5,"XTickLabel",{"1","2","3","4+"});
 set(get(h,"Ylabel"),"String","Basic reproductive ratio R_0");
 set(gca,'fontsize',16)
 axis off
