@@ -15,3 +15,5 @@ clear
 plot_R0_world_map_cdc;
 clear
 plot_R0_scatter;
+clear
+plot_pop_pyramids;
