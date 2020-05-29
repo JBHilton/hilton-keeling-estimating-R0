@@ -13,7 +13,9 @@ plot_R0_world_map_cdc.m plots a map of estimated R0 values by country based on t
 
 plot_R0_scatter.m plots the two sets of estimated scaling factors against one another on a scatter plot.
 
-run_all.m runs the above scripts, generating the results reported in our paper.
+plot_pop_pyramids.m plots sex-specific age pyramids for Niger, China, and Italy, all of which are identified as populations of interest in our paper.
+
+run_all.m runs the above scripts, generating all of the figures which appear in our paper.
 
 The function scaling_to_R0.m produces a table of estimated R0 values given a user-specified China-specific R0 and a table of scaling factors.
 
